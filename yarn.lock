@@ -773,10 +773,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-vis@^1.11.5":
-  version "1.11.5"
-  resolved "https://registry.yarnpkg.com/@types/react-vis/-/react-vis-1.11.5.tgz#60442aae4dff9022254f48fa1b985678c8e45e74"
-  integrity sha512-siCSR0RiKdwYmmEYLO2Jy3ejn3tWsUSFFAheyLI2Qevny9cFb/LC0zjsjfu7Nm0dXVrlY+QwRukPmVVZ3CkVOg==
+"@types/react-vis@^1.11.7":
+  version "1.11.7"
+  resolved "https://registry.yarnpkg.com/@types/react-vis/-/react-vis-1.11.7.tgz#da23b8fb833a962e8a0db39668438a43e9a7e05d"
+  integrity sha512-X0+xpR+koVXxmh68TlGSkIuXNL7DwqL+IvjtQvdJi7Vg9OokqBMU/EyuaFOUpN5awMXB7DDT/2WxC2epG+nW7Q==
   dependencies:
     "@types/react" "*"
 
