@@ -1,0 +1,20 @@
+name: "Repository Metrics Monitor"
+description: "Creates graphs of monitored values to display them using GitHub Pages."
+branding:
+  icon: "bar-chart"
+  color: "blue"
+inputs:
+  token:
+    description: "GitHub Token for pushing the doc changes"
+    required: true;
+  key:
+    required: true
+  value:
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.token }}
+    - ${{ inputs.key }}
+    - ${{ inputs.value }}
