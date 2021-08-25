@@ -39,7 +39,7 @@
     }
   },
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.5.0",
     "@actions/github": "^4.0.0",
     "@types/react-dom": "^17.0.0",
     "dayjs": "^1.9.7",
