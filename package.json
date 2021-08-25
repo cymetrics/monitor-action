@@ -1,5 +1,5 @@
 {
-  "name": "monitor-action",
+  "name": "@cymetrics/monitor-action",
   "version": "0.0.1",
   "repository": "https://github.com/cymetrics/monitor-action.git",
   "author": "MingYou Tsai<mingyou.tsai@cymetrics.com>",
