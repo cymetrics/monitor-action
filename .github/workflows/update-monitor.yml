@@ -19,24 +19,24 @@ jobs:
           SRC_SIZE=($(du -s src/))
           SRC_FILES_COUNT=($(find src -type f | wc -l))
           STATEMENT_COV=($(cat coverage/coverage-summary.json | jq ".total.statements.pct"))
-          echo "::set-env name=code_size::$SRC_SIZE"
-          echo "::set-env name=code_files_count::$SRC_FILES_COUNT"
-          echo "::set-env name=statement-coverage::$STATEMENT_COV"
+          echo "::set-output name=code_size::$SRC_SIZE"
+          echo "::set-output name=code_files_count::$SRC_FILES_COUNT"
+          echo "::set-output name=statement-coverage::$STATEMENT_COV"
       - uses: ./
         name: Update Report for Files Size
         with:
           key: code-size
-          value: ${{ env.code_size }}
+          value: ${{ steps.projectmetrics.outputs.code_size }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./
         name: Update Report for Files Count
         with:
           key: files-count
-          value: ${{ env.code_files_count }}
+          value: ${{ steps.projectmetrics.outputs.code_files_count }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./
         name: Update Report for Statement Coverage
         with:
           key: statement-coverage
-          value: ${{ env.statement-coverage }}
+          value: ${{ steps.projectmetrics.outputs.statement-coverage }}
           token: ${{ secrets.GITHUB_TOKEN }}
