@@ -10,6 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
+      - name: Cache modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-modules
+        with:
+          path: |
+            node_modules
+            ~/.npm
+          key: ${{ runner.os }}-${{ hashFiles( './yarn.lock' ) }}
+          restore-keys: |
+            ${{ runner.os }}-
       - name: Build and Test
         id: projectmetrics
         run: |
