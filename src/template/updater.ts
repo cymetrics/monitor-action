@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 import { getContent, createOrUpdateContent } from "../io/github";
-import { MetricsContext, ReleaseYear } from "../model";
+import { MetricsContext, ReleaseYear } from "../types";
 import { generatePage } from "./page";
 
 export async function updateTemplate(

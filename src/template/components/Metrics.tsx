@@ -9,7 +9,7 @@ import {
   VerticalBarSeries,
 } from "react-vis";
 import { SubHeader } from "./SubHeader";
-import { MetricsData, Config, MetricConfig } from "../../model";
+import { MetricsData, Config, MetricConfig } from "../../types";
 import { Statistics } from "./Statistics";
 
 export const Metrics: React.FC<{
@@ -39,7 +39,7 @@ export const Metrics: React.FC<{
                     {data.key}
                   </h5>
                   <div className="bg-gray-200 p-4">
-                    <FlexibleWidthXYPlot xType="ordinal" width={100} height={400}>
+                    <XYPlot xType="ordinal" width={100} height={400}>
                       <VerticalGridLines />
                       <HorizontalGridLines />
                       <XAxis tickLabelAngle={0} />
@@ -48,7 +48,7 @@ export const Metrics: React.FC<{
                         barWidth={0.9}
                         data={displayedValues}
                       />
-                    </FlexibleWidthXYPlot>
+                    </XYPlot>
                     <Statistics values={plainValues} />
                     {description ? (
                       <div className="mb-2">

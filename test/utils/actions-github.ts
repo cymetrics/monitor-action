@@ -1,6 +1,6 @@
 import { safeDump } from "js-yaml";
 import { toBase64 } from "../../src/io/encoding";
-import { ReleaseYear, MetricsData, Config } from "../../src/model";
+import { ReleaseYear, MetricsData, Config } from "../../src/types";
 
 export const getOctokit = () => ({
   repos: {

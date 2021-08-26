@@ -5,7 +5,7 @@ import {
   getContext,
   createOrUpdateRelease,
 } from "./io/github";
-import { MetricsData, MetricsContext } from "./model";
+import { MetricsData, MetricsContext } from "./types";
 import { updateTemplate } from "./template/updater";
 
 const createOrUpdateMetrics = async (
@@ -36,6 +36,7 @@ const createOrUpdateMetrics = async (
 };
 
 export async function runAction() {
+  // Get 
   try {
     const context = getContext();
     const key = core.getInput("key");

@@ -10,7 +10,7 @@ import {
   Config,
   MetricsContext,
   MetricConfig,
-} from "../model";
+} from "../types";
 import { importConfig } from "./config/importer";
 import { getContent } from "../io/github";
 import { Report } from "./Report";

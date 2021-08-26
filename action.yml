@@ -6,10 +6,12 @@ branding:
 inputs:
   token:
     description: "GitHub Token for pushing the doc changes"
-    required: true;
+    required: true
   key:
+    description: "ket of value"
     required: true
   value:
+    description: "indicator value"
     required: true
 runs:
   using: "docker"

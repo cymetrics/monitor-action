@@ -5,7 +5,7 @@ import { Metrics } from "./components/Metrics";
 import { Releases } from "./components/Releases";
 import { Header } from "./components/layout/Header";
 import { ChartGraphics } from "./page";
-import { ReleaseYear, MetricsContext, Config } from "../model";
+import { ReleaseYear, MetricsContext, Config } from "../types";
 
 export const Report: React.FC<{
   date: Date;

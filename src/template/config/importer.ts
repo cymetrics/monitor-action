@@ -1,6 +1,6 @@
 import { safeLoad } from "js-yaml";
 import * as github from "@actions/github";
-import { Config, MetricsContext } from "../../model";
+import { Config, MetricsContext } from "../../types";
 import { getContent } from "../../io/github";
 
 const CONFIG_PATH = ".github/repo-monitor-action/config.yml";

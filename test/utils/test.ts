@@ -1,5 +1,5 @@
 import { generateImage } from "jsdom-screenshot";
-import { ReleaseYear, MetricsContext } from "../../src/model";
+import { ReleaseYear, MetricsContext } from "../../src/types";
 
 const snapshotOpts = {
   failureThreshold: 0.01,

@@ -2,7 +2,7 @@ import * as React from "react";
 import * as dayjs from "dayjs";
 
 import { SubHeader } from "./SubHeader";
-import { ReleaseYear, ReleaseMap } from "../../model";
+import { ReleaseYear, ReleaseMap } from "../../types";
 
 const MAX_ITEMS = 10;
 

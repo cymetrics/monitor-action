@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { MetricsContext, Release, ReleaseYear } from "../model";
+import { MetricsContext, Release, ReleaseYear } from "../types";
 import { fromBase64, toBase64 } from "./encoding";
 
 export async function getContent(
