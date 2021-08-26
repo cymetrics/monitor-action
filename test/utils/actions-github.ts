@@ -42,7 +42,7 @@ export const mockAnswer = (
         };
         return createAnswer(JSON.stringify(year));
       },
-      [`.github/repo-monitor-action/config.yml`]: () => {
+      [`.github/monitor-action/config.yml`]: () => {
         const config: Config = {
           metrics: {
             ["key-a"]: {

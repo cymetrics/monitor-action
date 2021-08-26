@@ -3,7 +3,7 @@ import * as github from "@actions/github";
 import { Config, MetricsContext } from "../../types";
 import { getContent } from "../../io/github";
 
-const CONFIG_PATH = ".github/repo-monitor-action/config.yml";
+const CONFIG_PATH = ".github/monitor-action/config.yml";
 
 export const importConfig = async (
   context: MetricsContext

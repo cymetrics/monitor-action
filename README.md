@@ -18,7 +18,7 @@ steps:
         yarn build
         SIZE=($(du -s dist/))
         echo "::set-output name=code_size::$SIZE"
-    - uses: floric/repo-monitor-action@v1.4.1
+    - uses: cymetrics/monitor-action@v1.4.1
       name: Update Report
       with:
         key: code-size
@@ -28,7 +28,7 @@ steps:
 
 The metrics need to be configured with a custom config:
 
-https://github.com/cymetrics/monitor-action/blob/master/.github/repo-monitor-action/config.yml
+https://github.com/cymetrics/monitor-action/blob/master/.github/monitor-action/config.yml
 
 The following config whould show the codesize as described in the action above:
 

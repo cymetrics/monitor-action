@@ -40,7 +40,7 @@ describe("General", () => {
             ...github.getOctokit().repos,
             ...mockAnswer([
               {
-                key: ".github/repo-monitor-action/config.yml",
+                key: ".github/monitor-action/config.yml",
                 content: "asd:asf:asd",
               },
             ]),
@@ -69,7 +69,7 @@ describe("General", () => {
             ...github.getOctokit().repos,
             ...mockAnswer([
               {
-                key: ".github/repo-monitor-action/config.yml",
+                key: ".github/monitor-action/config.yml",
                 content: null,
               },
             ]),
@@ -84,7 +84,7 @@ describe("General", () => {
     // then
     expect(coreMock.setFailed.mock.calls.length).toBe(1);
     expect(coreMock.setFailed.mock.calls).toContainEqual([
-      "No config provided at .github/repo-monitor-action/config.yml on master",
+      "No config provided at .github/monitor-action/config.yml on master",
     ]);
   });
 
