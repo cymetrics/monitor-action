@@ -16,8 +16,29 @@ export const importConfig = async (
   if (!existingSha) {
     throw new Error(`No config provided at ${CONFIG_PATH} on ${branch}`);
   }
-
-  const res = await safeLoad(serializedData);
+  let res = null;
+  if (process.env.NODE_ENV === "development") {
+    // fake data
+    res = {
+      groups: {
+        ["General"]: {
+          metrics: ["code-size", "key-b"],
+          name: "General",
+          description: "Desc",
+        },
+        ["Other"]: {
+          metrics: ["key-b"],
+          name: "Other",
+        },
+      },
+      metrics: {
+        ["code-size"]: { description: "Code Size" },
+        ["key-b"]: {},
+      },
+    };
+  } else {
+    res = await safeLoad(serializedData);
+  }
 
   if (
     !Object.keys(res).find((n) => n === "metrics") ||

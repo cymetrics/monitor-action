@@ -125,14 +125,51 @@ const getAllData = async (config: Config, context: MetricsContext) => {
       .map((g) => g.metrics)
       .reduce((a, b) => [...a, ...b], [])
   );
-  const rawData = await Promise.all(
-    Array.from(keysToFetch).map((key) =>
-      getContent(
-        context,
-        `data/values/${new Date().getUTCFullYear()}/${key}.json`
+  let rawData = null;
+  if (process.env.NODE_ENV == 'development') {
+    rawData = [{
+      existingSha: 'e031008713b62e1ac785f54df7ee134fcbd2fe99',
+      serializedData: JSON.stringify({
+        "key":"code-size",
+        "type":"scalar",
+        "values":[
+           {
+              "value":30,
+              "releaseId":"e031008713b62e1ac785f54df7ee134fcbd2fe99"
+           },
+           {
+              "value":50,
+              "releaseId":"46ba28584a0961aebf2a1209aa015853e09a5d1d"
+           },
+           {
+              "value":80,
+              "releaseId":"3ecc40da215bd5bf3451c750ed226712515b2c82"
+           },
+           {
+              "value":100,
+              "releaseId":"1074acc8f62aef56440f63f3ae4efc5b0f3e6274"
+           },
+           {
+              "value":20,
+              "releaseId":"316ccf662b87dce91f572c59b46897471a9387f8"
+           },
+           {
+              "value":100,
+              "releaseId":"18b922e39df00044498bd0105c3feb0a54d2d0df"
+           }
+        ]
+     })
+    }]
+  } else {
+    rawData = await Promise.all(
+      Array.from(keysToFetch).map((key) =>
+        getContent(
+          context,
+          `data/values/${new Date().getUTCFullYear()}/${key}.json`
+        )
       )
-    )
-  );
+    );
+  }
   const data = rawData
     .filter((n) => !!n.existingSha)
     .map((n) => JSON.parse(n.serializedData));

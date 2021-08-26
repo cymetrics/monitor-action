@@ -39,7 +39,7 @@ export const Metrics: React.FC<{
                     {data.key}
                   </h5>
                   <div className="bg-gray-200 p-4">
-                    <XYPlot xType="ordinal" width={100} height={400}>
+                    <XYPlot xType="ordinal" width={400} height={400}>
                       <VerticalGridLines />
                       <HorizontalGridLines />
                       <XAxis tickLabelAngle={0} />

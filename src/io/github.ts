@@ -1,13 +1,23 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
+import { safeDump } from "js-yaml";
 import { MetricsContext, Release, ReleaseYear } from "../types";
 import { fromBase64, toBase64 } from "./encoding";
 
+// Read file from repository
 export async function getContent(
   context: MetricsContext,
   path: string
 ): Promise<{ serializedData: string | null; existingSha: string | null }> {
   const { token, owner, repo, branch } = context;
+  // Dev
+  if (process.env.NODE_ENV==="development") {
+    return {
+      serializedData: null,
+      existingSha: '18b922e39df00044498bd0105c3feb0a54d2d0df',
+    }
+  }
+
   try {
     const octokit = github.getOctokit(token);
     const res = await octokit.repos.getContent({
@@ -40,19 +50,32 @@ export async function createOrUpdateContent(
   existingSha: string | null
 ) {
   const { token, owner, repo, branch } = context;
-  const octokit = github.getOctokit(token);
-  await octokit.repos.createOrUpdateFileContents({
-    owner,
-    repo,
-    branch,
-    path,
-    content: toBase64(content),
-    sha: existingSha || undefined,
-    message: existingSha ? "Updated metrics" : "Created metrics",
-  });
+  if (process.env.NODE_ENV !== 'development') {
+    const octokit = github.getOctokit(token || process.env.GITHUB_TOKEN);
+    await octokit.repos.createOrUpdateFileContents({
+      owner,
+      repo,
+      branch,
+      path,
+      content: toBase64(content),
+      sha: existingSha || undefined,
+      message: existingSha ? "Updated metrics" : "Created metrics",
+    });
+  }
+  console.log(`not create ${path} in local mode`);
 }
 
 export function getContext() {
+  if (process.env.NODE_ENV === 'development') {
+    const context: MetricsContext = {
+      releaseId: '',
+      token: process.env.GITHUB_TOKEN,
+      owner: "cymetrics",
+      repo: "monitor-action",
+      branch: "gh-pages",
+    };
+    return context;
+  }
   const token = core.getInput("token");
   const { owner, repo } = github.context.repo;
   const { sha: releaseId } = github.context;

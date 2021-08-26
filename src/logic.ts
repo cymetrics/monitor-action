@@ -6,7 +6,7 @@ import {
   createOrUpdateRelease,
 } from "./io/github";
 import { MetricsData, MetricsContext } from "./types";
-import { updateTemplate } from "./template/updater";
+import { updateTemplate } from "./template/updateTemplate";
 
 const createOrUpdateMetrics = async (
   serializedData: string,
@@ -39,8 +39,9 @@ export async function runAction() {
   // Get 
   try {
     const context = getContext();
-    const key = core.getInput("key");
-    const value = core.getInput("value");
+    const key = core.getInput("key") || process.env.key;
+    const value = core.getInput("value") || process.env.value;
+    console.log(key, value)
     if (!key || Number.isNaN(Number.parseFloat(value))) {
       throw new Error(
         `Invalid arguments delivered: (key=${key}, value=${value})`
