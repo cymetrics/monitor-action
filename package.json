@@ -1,6 +1,6 @@
 {
   "name": "@cymetrics/monitor-action",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": "https://github.com/cymetrics/monitor-action.git",
   "author": "MingYou Tsai<mingyou.tsai@cymetrics.com>",
   "license": "Apache-2.0",
