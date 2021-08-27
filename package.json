@@ -5,6 +5,7 @@
   "author": "MingYou Tsai<mingyou.tsai@cymetrics.com>",
   "license": "Apache-2.0",
   "scripts": {
+    "dev": "ts-node --project tsconfig.prod.json src/dev.ts",
     "build": "tsc --project tsconfig.prod.json",
     "release": "npx standard-version",
     "commit": "git add . && npx git-cz --disable-emoji -S",

@@ -5,6 +5,9 @@ import {
   getContext,
   createOrUpdateRelease,
 } from "./io/github";
+import {
+  getJobTiming
+} from "./io/actions";
 import { MetricsData, MetricsContext } from "./types";
 import { updateTemplate } from "./template/updateTemplate";
 
@@ -12,12 +15,14 @@ const createOrUpdateMetrics = async (
   serializedData: string,
   key: string,
   value: string,
+  type: string,
   releaseId: string,
   context: MetricsContext,
   path: string,
   existingSha: string
 ) => {
   let data: MetricsData;
+  let mixValue: string = value;
   if (!serializedData) {
     core.info(`Saving new metrics for key "${key}"`);
     data = { key, type: "scalar", values: [] };
@@ -26,12 +31,19 @@ const createOrUpdateMetrics = async (
     data = JSON.parse(serializedData);
   }
 
-  data.values.push({
-    value: Number.parseFloat(value),
-    releaseId,
-  });
+  if (type === 'job') {
+    mixValue = (await getJobTiming(context, { jobId: value })).value;
+  }
 
-  await createOrUpdateContent(context, path, JSON.stringify(data), existingSha);
+  if (mixValue) {
+    data.values.push({
+      value: Number.parseFloat(mixValue),
+      releaseId,
+    });
+  
+    await createOrUpdateContent(context, path, JSON.stringify(data), existingSha);
+  }
+
   return data;
 };
 
@@ -41,7 +53,7 @@ export async function runAction() {
     const context = getContext();
     const key = core.getInput("key") || process.env.key;
     const value = core.getInput("value") || process.env.value;
-    console.log(key, value)
+    const type = core.getInput("type") || process.env.type;
     if (!key || Number.isNaN(Number.parseFloat(value))) {
       throw new Error(
         `Invalid arguments delivered: (key=${key}, value=${value})`
@@ -61,6 +73,7 @@ export async function runAction() {
       serializedData,
       key,
       value,
+      type,
       releaseId,
       context,
       path,

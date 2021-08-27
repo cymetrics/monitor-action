@@ -5,6 +5,8 @@ metrics:
     description: Number of source files
   statement-coverage:
     description: Statement Coverage
+  ci-time:
+    description: CI run time
 groups:
   general:
     name: General
@@ -14,5 +16,12 @@ groups:
       - files-count
   tests:
     name: Testing
+    description: This section shows code complexity metrics
     metrics:
       - statement-coverage
+  ci:
+    name: CI Data
+    description: This section shows code complexity metrics
+    metrics:
+      - ci-time
+  

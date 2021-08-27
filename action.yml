@@ -13,6 +13,9 @@ inputs:
   value:
     description: "indicator value"
     required: true
+  type:
+    description: "certain type of indicator"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"

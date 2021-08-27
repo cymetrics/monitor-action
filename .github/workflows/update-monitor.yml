@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - master
+      - back-up-local
 
 jobs:
   UpdateMonitor:
     runs-on: ubuntu-latest
+    outputs:
+      ci_job: ${{ steps.projectmetrics.outputs.ci_job }}
     steps:
       - uses: actions/checkout@v2.3.4
       - name: Cache modules
@@ -33,6 +36,7 @@ jobs:
           echo "::set-output name=code_size::$SRC_SIZE"
           echo "::set-output name=code_files_count::$SRC_FILES_COUNT"
           echo "::set-output name=statement-coverage::$STATEMENT_COV"
+          echo "::set-output name=ci_job::${{github.job}}"
       - uses: ./
         name: Update Report for Files Size
         with:
@@ -50,4 +54,20 @@ jobs:
         with:
           key: statement-coverage
           value: ${{ steps.projectmetrics.outputs.statement-coverage }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  UpdateCITime:
+    runs-on: ubuntu-latest
+    needs: UpdateMonitor
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - name: test output
+        run: |
+          echo "${{ needs.UpdateMonitor.outputs.ci_job }}"
+      - uses: ./
+        name: Update Report for ci time
+        with:
+          key: ci-time
+          type: job
+          value: ${{github.run_id}}-${{ needs.UpdateMonitor.outputs.ci_job }}
           token: ${{ secrets.GITHUB_TOKEN }}

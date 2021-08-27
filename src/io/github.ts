@@ -1,6 +1,5 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { safeDump } from "js-yaml";
 import { MetricsContext, Release, ReleaseYear } from "../types";
 import { fromBase64, toBase64 } from "./encoding";
 
@@ -61,8 +60,9 @@ export async function createOrUpdateContent(
       sha: existingSha || undefined,
       message: existingSha ? "Updated metrics" : "Created metrics",
     });
+  } else {
+    console.log(`not create ${path} in local mode`);
   }
-  console.log(`not create ${path} in local mode`);
 }
 
 export function getContext() {
