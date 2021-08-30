@@ -3112,10 +3112,10 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
-jsdom-screenshot@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/jsdom-screenshot/-/jsdom-screenshot-3.2.0.tgz#367c0ceada2405d4bd48d499f947ceb9072a5539"
-  integrity sha512-kAmHKr9ZrybEAtQYVE4kA2vdaXQ9LQn0Wa1HnEfLyrbe9mXgS4ftzdjJXfTeCoq5BmvmYOy2IFFiaYa/v2YSZg==
+jsdom-screenshot@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/jsdom-screenshot/-/jsdom-screenshot-4.0.0.tgz#633c1bd0e557244cd602b47dcd19c755093654d1"
+  integrity sha512-as86MWDSiwQEQqaw3qt41u4Fi0Wi60biHmL2p3xe8e/PoZoz/qcTmoCEsNrNzPm8RcnT69A8zXuMUL9g7uyQzA==
   dependencies:
     connect "3.7.0"
     eslint-plugin-prettier "3.1.0"
