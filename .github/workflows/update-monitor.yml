@@ -12,7 +12,7 @@ jobs:
     outputs:
       ci_job: ${{ steps.projectmetrics.outputs.ci_job }}
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.4.0
       - name: Cache modules
         uses: actions/cache@v2
         env:
@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: UpdateMonitor
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.4.0
       - name: test output
         run: |
           echo "${{ needs.UpdateMonitor.outputs.ci_job }}"
